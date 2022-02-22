@@ -23,6 +23,13 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: nickytd/init-container
+          flavor: |
+            latest=true
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=ref,event=tag
+            type=semver,pattern={{version}}
       -
         name: Login to DockerHub
         if: github.event_name != 'pull_request'
